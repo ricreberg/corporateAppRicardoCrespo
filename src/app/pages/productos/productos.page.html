@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="header">
+      <ion-col>ID</ion-col>
+      <ion-col>Nombre</ion-col>
+      <ion-col>Unidades</ion-col>
+      <ion-col>Precio</ion-col>
+      <ion-col>Foto</ion-col>
+      <ion-col>Vendedor</ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let product of products">
+      <ion-col>{{ product.id }}</ion-col>
+      <ion-col>{{ product.name }}</ion-col>
+      <ion-col>{{ product.units }}</ion-col>
+      <ion-col>{{ product.price }} €</ion-col>
+      <ion-col>
+        <img [src]="product.photo" [alt]="product.name" width="80">
+      </ion-col>
+      <ion-col>{{ product.seller }}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

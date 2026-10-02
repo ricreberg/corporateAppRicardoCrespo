@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Portátil Dell",
+    "units": 12,
+    "price": 1200,
+    "photo": "assets/images/dell.png",
+    "seller": "Informática Centro"
+  },
+  {
+    "id": 2,
+    "name": "Monitor LG",
+    "units": 8,
+    "price": 299,
+    "photo": "assets/images/lg.png",
+    "seller": "Tecnología Madrid"
+  },
+  {
+    "id": 3,
+    "name": "Torre Omen",
+    "units": 4,
+    "price": 499,
+    "photo": "assets/images/omen.png",
+    "seller": "PC Express"
+  }
+]
