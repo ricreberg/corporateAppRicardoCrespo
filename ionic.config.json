@@ -1,0 +1,7 @@
+{
+  "name": "corporateAppRicardoCrespo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
