@@ -1,13 +1,82 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>contacto</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Contacto</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">contacto</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Escríbenos</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>
+        En esta práctica, el mensaje se guarda en este dispositivo.
+        Cada nuevo mensaje sustituye al anterior.
+      </p>
+
+      <form
+        #contactForm="ngForm"
+        (ngSubmit)="saveMessage(contactForm)"
+        novalidate
+      >
+        <ion-item>
+          <ion-input
+            label="Correo electrónico"
+            labelPlacement="stacked"
+            type="email"
+            name="email"
+            placeholder="nombre@ejemplo.com"
+            [(ngModel)]="email"
+            required
+            email
+            [disabled]="saving || loading"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-textarea
+            label="Mensaje"
+            labelPlacement="stacked"
+            name="message"
+            placeholder="Escribe tu consulta"
+            [(ngModel)]="message"
+            [rows]="4"
+            [autoGrow]="true"
+            required
+            [disabled]="saving || loading"
+          ></ion-textarea>
+        </ion-item>
+
+        <ion-button
+          type="submit"
+          class="ion-margin-top"
+          [disabled]="saving || loading"
+        >
+          {{ saving ? 'Guardando…' : 'Guardar mensaje' }}
+        </ion-button>
+      </form>
+
+      <div aria-live="polite">
+        <p *ngIf="loading">Recuperando mensaje guardado…</p>
+        <p *ngIf="statusMessage">{{ statusMessage }}</p>
+        <p *ngIf="errorMessage" role="alert">{{ errorMessage }}</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="savedMessage as saved">
+    <ion-card-header>
+      <ion-card-title>Último mensaje guardado</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Correo:</strong> {{ saved.email }}</p>
+      <p style="white-space: pre-wrap">{{ saved.message }}</p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

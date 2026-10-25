@@ -1,13 +1,56 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>nosotros</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nosotros</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">nosotros</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Nuestra empresa</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>
+        Somos una empresa especializada en soluciones digitales con
+        Angular, Ionic y Node.js. Desarrollamos aplicaciones web y
+        móviles para facilitar el trabajo de nuestros clientes.
+      </p>
+
+      <h2 class="ion-margin-top">Nuestras oficinas</h2>
+      <p>Calle Arcos de Jalón 18, Madrid.</p>
+
+      <p class="ion-margin-top">
+        Puedes consultar la distancia aproximada desde tu ubicación
+        hasta nuestras oficinas.
+      </p>
+
+      <ion-button
+        class="ion-margin-top"
+        (click)="getLocation()"
+        [disabled]="loading"
+      >
+        {{ loading ? 'Obteniendo ubicación…' : 'Calcular distancia' }}
+      </ion-button>
+
+      <div aria-live="polite">
+        <p *ngIf="distance !== null" class="ion-margin-top">
+          <strong>Distancia a nuestras oficinas:</strong>
+          {{ distance | number:'1.2-2' }} km.
+        </p>
+
+        <p *ngIf="distance !== null">
+          Distancia geográfica aproximada; no corresponde a un
+          recorrido por carretera.
+        </p>
+
+        <p *ngIf="errorMessage" class="ion-margin-top" role="alert">
+          {{ errorMessage }}
+        </p>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
